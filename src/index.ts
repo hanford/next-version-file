@@ -12,7 +12,7 @@ const payload = {
   version: process.env.CIRCLE_SHA1 || nanoid(),
 };
 
-fs.writeFile(path, JSON.stringify(payload), (err) => {
+fs.writeFile(path, JSON.stringify(payload), err => {
   if (err) throw err;
 
   console.log(`Next.js ${fileName}.json file created`);
