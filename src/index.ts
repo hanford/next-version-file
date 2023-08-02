@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import { join } from 'path';
+// @ts-expect-error
 import { argv } from 'yargs';
 import { nanoid } from 'nanoid';
 
@@ -9,7 +10,7 @@ const fileName = (argv.fileName as string) || 'version';
 const path = join(distDir, `${fileName}.json`);
 
 const payload = {
-  version: process.env.CIRCLE_SHA1 || nanoid(),
+  version: process.env.GITHUB_SHA || process.env.CIRCLE_SHA1 || nanoid(),
 };
 
 fs.writeFile(path, JSON.stringify(payload), err => {
